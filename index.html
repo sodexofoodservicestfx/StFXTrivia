@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>STFX Trivia Challenge</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 
 <style>
 
@@ -17,19 +20,20 @@
     font-family:'Poppins',sans-serif;
 }
 
+
 body{
 
     background:linear-gradient(135deg,#003A70,#0A2A66,#001B44);
+
     min-height:100vh;
 
     display:flex;
     justify-content:center;
     align-items:center;
 
-    overflow:hidden;
 }
 
-/* Floating circles */
+
 
 body::before,
 body::after{
@@ -41,25 +45,29 @@ body::after{
 
 }
 
+
 body::before{
 
     width:350px;
     height:350px;
-
     top:-120px;
     right:-120px;
 
 }
 
+
 body::after{
 
     width:250px;
     height:250px;
-
     bottom:-80px;
     left:-80px;
 
 }
+
+
+
+/* Main Box */
 
 .container{
 
@@ -74,285 +82,42 @@ body::after{
 
     box-shadow:0 25px 60px rgba(0,0,0,.25);
 
-    position:relative;
+}
+
+
+
+/* Welcome Screen */
+
+.welcome{
+
+    text-align:center;
+
+    padding:40px 20px;
 
 }
 
-/* Header */
 
-.header{
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    margin-bottom:35px;
-
-}
-
-.header h1{
+.welcome h1{
 
     color:#003A70;
-    font-size:34px;
+
+    font-size:38px;
+
+    margin-bottom:20px;
 
 }
 
-.score{
 
-    background:#003A70;
+.welcome p{
 
-    color:white;
-
-    padding:10px 20px;
-
-    border-radius:40px;
-
-    font-weight:600;
-
-}
-
-/* Progress */
-
-.progressText{
-
-    color:#666;
-    margin-bottom:10px;
-
-}
-
-.progressBar{
-
-    width:100%;
-    height:12px;
-
-    background:#ddd;
-
-    border-radius:50px;
-
-    overflow:hidden;
-
-    margin-bottom:35px;
-
-}
-
-.progress{
-
-    width:35%;
-
-    height:100%;
-
-    background:linear-gradient(to right,#4CAF50,#8BC34A);
-
-}
-
-/* Question */
-
-.question{
-
-    font-size:30px;
-
-    font-weight:600;
-
-    color:#222;
-
-    margin-bottom:30px;
-
-}
-
-/* Answers */
-
-.answers{
-
-    display:grid;
-
-    gap:18px;
-
-}
-
-.answer{
-
-    border:none;
-
-    background:#F4F6F8;
-
-    padding:22px;
-
-    border-radius:18px;
+    color:#555;
 
     font-size:20px;
 
-    cursor:pointer;
-
-    text-align:left;
-
-    transition:.25s;
-
-    border:3px solid transparent;
+    margin-bottom:40px;
 
 }
 
-.answer:hover{
-
-    transform:translateY(-4px);
-
-    border-color:#0057B8;
-
-    background:#EEF5FF;
-
-    box-shadow:0 10px 25px rgba(0,87,184,.2);
-
-}
-
-/* Footer */
-
-.footer{
-
-    margin-top:40px;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-}
-
-.next{
-
-    background:#0057B8;
-
-    color:white;
-
-    border:none;
-
-    padding:15px 40px;
-
-    border-radius:40px;
-
-    cursor:pointer;
-
-    font-size:18px;
-
-    font-weight:600;
-
-    transition:.25s;
-
-}
-
-.next:hover{
-
-    background:#003A70;
-
-    transform:scale(1.05);
-
-}
-
-.logo{
-
-    color:#888;
-
-    font-size:15px;
-
-}
-
-</style>
-</head>
-
-<body>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>STFX Trivia Challenge</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
-
-
-body{
-
-    background:linear-gradient(135deg,#003A70,#0A2A66,#001B44);
-
-    min-height:100vh;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    overflow:hidden;
-
-}
-
-
-/* Floating circles */
-
-body::before,
-body::after{
-
-    content:"";
-    position:absolute;
-
-    border-radius:50%;
-
-    background:rgba(255,255,255,.06);
-
-}
-
-
-body::before{
-
-    width:350px;
-    height:350px;
-
-    top:-120px;
-    right:-120px;
-
-}
-
-
-body::after{
-
-    width:250px;
-    height:250px;
-
-    bottom:-80px;
-    left:-80px;
-
-}
-
-
-
-/* Main Card */
-
-.container{
-
-    width:90%;
-    max-width:700px;
-
-    background:white;
-
-    border-radius:30px;
-
-    padding:35px;
-
-    box-shadow:0 25px 60px rgba(0,0,0,.25);
-
-    position:relative;
-
-}
 
 
 
@@ -369,6 +134,7 @@ body::after{
     margin-bottom:35px;
 
 }
+
 
 
 .header h1{
@@ -408,6 +174,7 @@ body::after{
 }
 
 
+
 .progressBar{
 
     width:100%;
@@ -423,6 +190,7 @@ body::after{
     margin-bottom:35px;
 
 }
+
 
 
 .progress{
@@ -433,7 +201,7 @@ body::after{
 
     background:linear-gradient(to right,#4CAF50,#8BC34A);
 
-    transition:.4s;
+    transition:.3s;
 
 }
 
@@ -483,9 +251,9 @@ body::after{
 
     text-align:left;
 
-    transition:.25s;
-
     border:3px solid transparent;
+
+    transition:.25s;
 
 }
 
@@ -502,8 +270,6 @@ body::after{
 }
 
 
-
-/* Selected Answer */
 
 .answer.selected{
 
@@ -538,6 +304,7 @@ body::after{
     gap:15px;
 
 }
+
 
 
 .next{
@@ -583,6 +350,7 @@ body::after{
 }
 
 
+
 </style>
 
 </head>
@@ -592,17 +360,55 @@ body::after{
 <body>
 
 
+
 <div class="container">
+
+
+
+<!-- WELCOME SCREEN -->
+
+<div class="welcome" id="welcome">
+
+
+<h1>
+🏛️ Welcome to STFX Trivia
+</h1>
+
+
+<p>
+Test your knowledge of StFX, Sodexo, campus life, and more!
+</p>
+
+
+<button class="next" onclick="startTrivia()">
+
+Start Trivia →
+
+</button>
+
+
+</div>
+
+
+
+
+
+<!-- QUIZ SCREEN -->
+
+<div id="quiz" style="display:none;">
+
 
 
 <div class="header">
 
-<h1>🏛️ STFX Trivia</h1>
+<h1>
+🏛️ STFX Trivia
+</h1>
 
 
-<div class="score" id="score">
+<div class="score">
 
-⭐ Score: 0
+⭐ Score: <span id="score">0</span>
 
 </div>
 
@@ -613,8 +419,6 @@ body::after{
 
 <div class="progressText" id="progressText">
 
-Question 1 of 5
-
 </div>
 
 
@@ -624,7 +428,6 @@ Question 1 of 5
 <div class="progress" id="progress"></div>
 
 </div>
-
 
 
 
@@ -640,7 +443,6 @@ Question 1 of 5
 
 
 
-
 <div class="footer">
 
 
@@ -651,7 +453,9 @@ Powered by Sodexo & StFX
 </div>
 
 
+
 <div class="buttons">
+
 
 <button class="next" id="back">
 
@@ -660,20 +464,25 @@ Powered by Sodexo & StFX
 </button>
 
 
+
 <button class="next" id="next">
 
 Next →
 
 </button>
 
-</div>
-
 
 </div>
 
 
 </div>
 
+
+</div>
+
+
+
+</div>
 
 
 
@@ -681,7 +490,9 @@ Next →
 
 <script>
 
+
 const questions=[
+
 
 {
 question:"Which building houses the main dining hall at StFX?",
@@ -742,15 +553,28 @@ answers:[
 correct:0
 }
 
+
 ];
 
 
 
 let currentQuestion=0;
 
-let score=0;
+let selectedAnswers=[];
 
-let selected=[];
+
+
+function startTrivia(){
+
+document.getElementById("welcome").style.display="none";
+
+document.getElementById("quiz").style.display="block";
+
+loadQuestion();
+
+}
+
+
 
 
 
@@ -764,7 +588,7 @@ document.getElementById("question").innerHTML=q.question;
 
 
 document.getElementById("progressText").innerHTML=
-`Question ${currentQuestion+1} of ${questions.length}`;
+"Question "+(currentQuestion+1)+" of "+questions.length;
 
 
 
@@ -781,14 +605,13 @@ q.answers.forEach((answer,index)=>{
 
 html+=`
 
-<button class="answer" onclick="chooseAnswer(${index})">
+<button class="answer" onclick="selectAnswer(${index})">
 
 ${answer}
 
 </button>
 
 `;
-
 
 });
 
@@ -797,28 +620,24 @@ document.getElementById("answers").innerHTML=html;
 
 
 
-if(selected[currentQuestion]!=null){
+if(selectedAnswers[currentQuestion] !== undefined){
 
-document.querySelectorAll(".answer")[selected[currentQuestion]]
+document.querySelectorAll(".answer")[selectedAnswers[currentQuestion]]
 .classList.add("selected");
 
 }
 
 
-
-document.getElementById("score").innerHTML=
-`⭐ Score: ${score}`;
-
-
 }
 
 
 
 
-function chooseAnswer(index){
+
+function selectAnswer(index){
 
 
-selected[currentQuestion]=index;
+selectedAnswers[currentQuestion]=index;
 
 
 document.querySelectorAll(".answer").forEach(btn=>{
@@ -840,9 +659,9 @@ document.querySelectorAll(".answer")[index]
 document.getElementById("next").onclick=function(){
 
 
-if(selected[currentQuestion]==null){
+if(selectedAnswers[currentQuestion]===undefined){
 
-alert("Please select an answer first!");
+alert("Please select an answer!");
 
 return;
 
@@ -852,24 +671,58 @@ return;
 
 if(currentQuestion < questions.length-1){
 
-
 currentQuestion++;
 
 loadQuestion();
 
-
 }
+
 
 else{
 
 
-calculateScore();
+let score=0;
 
+
+questions.forEach((q,index)=>{
+
+if(selectedAnswers[index]===q.correct){
+
+score++;
+
+}
+
+});
+
+
+
+document.querySelector(".container").innerHTML=`
+
+<div class="welcome">
+
+<h1>
+🎉 Trivia Complete!
+</h1>
+
+<p>
+Your Score: ${score}/${questions.length}
+</p>
+
+<button class="next" onclick="location.reload()">
+
+Play Again →
+
+</button>
+
+</div>
+
+`;
 
 }
 
 
 };
+
 
 
 
@@ -888,74 +741,6 @@ loadQuestion();
 
 
 };
-
-
-
-
-
-
-function calculateScore(){
-
-
-score=0;
-
-
-questions.forEach((q,index)=>{
-
-
-if(selected[index]===q.correct){
-
-score++;
-
-}
-
-
-});
-
-
-document.querySelector(".container").innerHTML=`
-
-<div style="text-align:center">
-
-<h1 style="color:#003A70;font-size:40px">
-
-🎉 Trivia Complete!
-
-</h1>
-
-
-<br>
-
-
-<h2>
-
-Your Score: ${score}/${questions.length}
-
-</h2>
-
-
-<br>
-
-
-<button class="next" onclick="location.reload()">
-
-Play Again
-
-</button>
-
-
-</div>
-
-`;
-
-
-
-}
-
-
-
-
-loadQuestion();
 
 
 
