@@ -260,69 +260,715 @@ body::after{
 
 <body>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>STFX Trivia Challenge</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+
+body{
+
+    background:linear-gradient(135deg,#003A70,#0A2A66,#001B44);
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
+
+}
+
+
+/* Floating circles */
+
+body::before,
+body::after{
+
+    content:"";
+    position:absolute;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.06);
+
+}
+
+
+body::before{
+
+    width:350px;
+    height:350px;
+
+    top:-120px;
+    right:-120px;
+
+}
+
+
+body::after{
+
+    width:250px;
+    height:250px;
+
+    bottom:-80px;
+    left:-80px;
+
+}
+
+
+
+/* Main Card */
+
+.container{
+
+    width:90%;
+    max-width:700px;
+
+    background:white;
+
+    border-radius:30px;
+
+    padding:35px;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.25);
+
+    position:relative;
+
+}
+
+
+
+/* Header */
+
+.header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+}
+
+
+.header h1{
+
+    color:#003A70;
+
+    font-size:34px;
+
+}
+
+
+
+.score{
+
+    background:#003A70;
+
+    color:white;
+
+    padding:10px 20px;
+
+    border-radius:40px;
+
+    font-weight:600;
+
+}
+
+
+
+/* Progress */
+
+.progressText{
+
+    color:#666;
+
+    margin-bottom:10px;
+
+}
+
+
+.progressBar{
+
+    width:100%;
+
+    height:12px;
+
+    background:#ddd;
+
+    border-radius:50px;
+
+    overflow:hidden;
+
+    margin-bottom:35px;
+
+}
+
+
+.progress{
+
+    height:100%;
+
+    width:0%;
+
+    background:linear-gradient(to right,#4CAF50,#8BC34A);
+
+    transition:.4s;
+
+}
+
+
+
+/* Question */
+
+.question{
+
+    font-size:30px;
+
+    font-weight:600;
+
+    color:#222;
+
+    margin-bottom:30px;
+
+}
+
+
+
+/* Answers */
+
+.answers{
+
+    display:grid;
+
+    gap:18px;
+
+}
+
+
+
+.answer{
+
+    border:none;
+
+    background:#F4F6F8;
+
+    padding:22px;
+
+    border-radius:18px;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    text-align:left;
+
+    transition:.25s;
+
+    border:3px solid transparent;
+
+}
+
+
+
+.answer:hover{
+
+    transform:translateY(-4px);
+
+    border-color:#0057B8;
+
+    background:#EEF5FF;
+
+}
+
+
+
+/* Selected Answer */
+
+.answer.selected{
+
+    border-color:#0057B8;
+
+    background:#EEF5FF;
+
+}
+
+
+
+/* Footer */
+
+.footer{
+
+    margin-top:40px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+
+
+.buttons{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+
+.next{
+
+    background:#0057B8;
+
+    color:white;
+
+    border:none;
+
+    padding:15px 35px;
+
+    border-radius:40px;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+
+
+.next:hover{
+
+    background:#003A70;
+
+    transform:scale(1.05);
+
+}
+
+
+
+.logo{
+
+    color:#888;
+
+    font-size:15px;
+
+}
+
+
+</style>
+
+</head>
+
+
+
+<body>
+
+
 <div class="container">
+
 
 <div class="header">
 
 <h1>🏛️ STFX Trivia</h1>
 
-<div class="score">
-⭐ Score: 20
-</div>
+
+<div class="score" id="score">
+
+⭐ Score: 0
 
 </div>
 
-<div class="progressText">
-
-Question 4 of 10
 
 </div>
+
+
+
+<div class="progressText" id="progressText">
+
+Question 1 of 5
+
+</div>
+
+
 
 <div class="progressBar">
 
-<div class="progress"></div>
+<div class="progress" id="progress"></div>
 
 </div>
 
-<div class="question">
 
-Which building houses the main dining hall at StFX?
+
+
+<div class="question" id="question">
+
+</div>
+
+
+
+<div class="answers" id="answers">
 
 </div>
 
-<div class="answers">
 
-<button class="answer">
-🏛️ Morrison Hall
-</button>
 
-<button class="answer">
-📚 Angus L. Macdonald Library
-</button>
-
-<button class="answer">
-🏢 Mulroney Hall
-</button>
-
-<button class="answer">
-🏠 Bishop's Hall
-</button>
-
-</div>
 
 <div class="footer">
 
+
 <div class="logo">
+
 Powered by Sodexo & StFX
+
 </div>
 
-<button class="next">
+
+<div class="buttons">
+
+<button class="next" id="back">
+
+← Back
+
+</button>
+
+
+<button class="next" id="next">
+
 Next →
+
 </button>
 
 </div>
 
+
 </div>
 
+
+</div>
+
+
+
+
+
+
+<script>
+
+
+const questions=[
+
+
+{
+question:"Which building houses the main dining hall at StFX?",
+answers:[
+"🏛️ Morrison Hall",
+"📚 Angus L. Macdonald Library",
+"🏢 Mulroney Hall",
+"🏠 Bishop's Hall"
+],
+correct:0
+},
+
+
+{
+question:"What does STFX stand for?",
+answers:[
+"Saint Francis Xavier University",
+"St Thomas Francis Xavier College",
+"Saint Frederick Xavier School",
+"Southern Technology Faculty Xavier"
+],
+correct:0
+},
+
+
+
+{
+question:"Who provides food services at StFX?",
+answers:[
+"🍔 McDonald's",
+"🍽️ Sodexo",
+"☕ Starbucks",
+"🥗 Aramark"
+],
+correct:1
+},
+
+
+
+{
+question:"What province is StFX located in?",
+answers:[
+"Ontario",
+"Nova Scotia",
+"Alberta",
+"British Columbia"
+],
+correct:1
+},
+
+
+
+{
+question:"Which colour is associated with StFX?",
+answers:[
+"🔵 Blue and White",
+"🔴 Red and Black",
+"🟢 Green and Gold",
+"🟣 Purple and Silver"
+],
+correct:0
+}
+
+
+];
+
+
+
+let currentQuestion=0;
+
+let score=0;
+
+let selected=[];
+
+
+
+function loadQuestion(){
+
+
+let q=questions[currentQuestion];
+
+
+document.getElementById("question").innerHTML=q.question;
+
+
+document.getElementById("progressText").innerHTML=
+`Question ${currentQuestion+1} of ${questions.length}`;
+
+
+
+document.getElementById("progress").style.width=
+((currentQuestion+1)/questions.length)*100+"%";
+
+
+
+let html="";
+
+
+q.answers.forEach((answer,index)=>{
+
+
+html+=`
+
+<button class="answer" onclick="chooseAnswer(${index})">
+
+${answer}
+
+</button>
+
+`;
+
+
+});
+
+
+document.getElementById("answers").innerHTML=html;
+
+
+
+if(selected[currentQuestion]!=null){
+
+document.querySelectorAll(".answer")[selected[currentQuestion]]
+.classList.add("selected");
+
+}
+
+
+
+document.getElementById("score").innerHTML=
+`⭐ Score: ${score}`;
+
+
+}
+
+
+
+
+function chooseAnswer(index){
+
+
+selected[currentQuestion]=index;
+
+
+document.querySelectorAll(".answer").forEach(btn=>{
+
+btn.classList.remove("selected");
+
+});
+
+
+document.querySelectorAll(".answer")[index]
+.classList.add("selected");
+
+
+}
+
+
+
+
+document.getElementById("next").onclick=function(){
+
+
+if(selected[currentQuestion]==null){
+
+alert("Please select an answer first!");
+
+return;
+
+}
+
+
+
+if(currentQuestion < questions.length-1){
+
+
+currentQuestion++;
+
+loadQuestion();
+
+
+}
+
+else{
+
+
+calculateScore();
+
+
+}
+
+
+};
+
+
+
+
+
+document.getElementById("back").onclick=function(){
+
+
+if(currentQuestion>0){
+
+currentQuestion--;
+
+loadQuestion();
+
+}
+
+
+};
+
+
+
+
+
+
+function calculateScore(){
+
+
+score=0;
+
+
+questions.forEach((q,index)=>{
+
+
+if(selected[index]===q.correct){
+
+score++;
+
+}
+
+
+});
+
+
+document.querySelector(".container").innerHTML=`
+
+<div style="text-align:center">
+
+<h1 style="color:#003A70;font-size:40px">
+
+🎉 Trivia Complete!
+
+</h1>
+
+
+<br>
+
+
+<h2>
+
+Your Score: ${score}/${questions.length}
+
+</h2>
+
+
+<br>
+
+
+<button class="next" onclick="location.reload()">
+
+Play Again
+
+</button>
+
+
+</div>
+
+`;
+
+
+
+}
+
+
+
+
+loadQuestion();
+
+
+
+</script>
+
+
+
 </body>
+
 </html>
