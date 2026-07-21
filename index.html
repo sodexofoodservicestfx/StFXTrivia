@@ -147,19 +147,7 @@ body::after{
 
 
 
-.score{
 
-    background:#003A70;
-
-    color:white;
-
-    padding:10px 20px;
-
-    border-radius:40px;
-
-    font-weight:600;
-
-}
 
 
 
@@ -406,11 +394,6 @@ Start Trivia →
 </h1>
 
 
-<div class="score">
-
-⭐ Score: <span id="score">0</span>
-
-</div>
 
 
 </div>
@@ -628,8 +611,20 @@ document.querySelectorAll(".answer")[selectedAnswers[currentQuestion]]
 }
 
 
+// Show/hide back button
+
+if(currentQuestion === 0){
+
+document.getElementById("back").style.display="none";
+
+}
+else{
+
+document.getElementById("back").style.display="block";
+
 }
 
+}
 
 
 
