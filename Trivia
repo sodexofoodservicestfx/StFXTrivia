@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>STFX Trivia Challenge</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    background:linear-gradient(135deg,#003A70,#0A2A66,#001B44);
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
+}
+
+/* Floating circles */
+
+body::before,
+body::after{
+
+    content:"";
+    position:absolute;
+    border-radius:50%;
+    background:rgba(255,255,255,.06);
+
+}
+
+body::before{
+
+    width:350px;
+    height:350px;
+
+    top:-120px;
+    right:-120px;
+
+}
+
+body::after{
+
+    width:250px;
+    height:250px;
+
+    bottom:-80px;
+    left:-80px;
+
+}
+
+.container{
+
+    width:90%;
+    max-width:700px;
+
+    background:white;
+
+    border-radius:30px;
+
+    padding:35px;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.25);
+
+    position:relative;
+
+}
+
+/* Header */
+
+.header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:35px;
+
+}
+
+.header h1{
+
+    color:#003A70;
+    font-size:34px;
+
+}
+
+.score{
+
+    background:#003A70;
+
+    color:white;
+
+    padding:10px 20px;
+
+    border-radius:40px;
+
+    font-weight:600;
+
+}
+
+/* Progress */
+
+.progressText{
+
+    color:#666;
+    margin-bottom:10px;
+
+}
+
+.progressBar{
+
+    width:100%;
+    height:12px;
+
+    background:#ddd;
+
+    border-radius:50px;
+
+    overflow:hidden;
+
+    margin-bottom:35px;
+
+}
+
+.progress{
+
+    width:35%;
+
+    height:100%;
+
+    background:linear-gradient(to right,#4CAF50,#8BC34A);
+
+}
+
+/* Question */
+
+.question{
+
+    font-size:30px;
+
+    font-weight:600;
+
+    color:#222;
+
+    margin-bottom:30px;
+
+}
+
+/* Answers */
+
+.answers{
+
+    display:grid;
+
+    gap:18px;
+
+}
+
+.answer{
+
+    border:none;
+
+    background:#F4F6F8;
+
+    padding:22px;
+
+    border-radius:18px;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    text-align:left;
+
+    transition:.25s;
+
+    border:3px solid transparent;
+
+}
+
+.answer:hover{
+
+    transform:translateY(-4px);
+
+    border-color:#0057B8;
+
+    background:#EEF5FF;
+
+    box-shadow:0 10px 25px rgba(0,87,184,.2);
+
+}
+
+/* Footer */
+
+.footer{
+
+    margin-top:40px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.next{
+
+    background:#0057B8;
+
+    color:white;
+
+    border:none;
+
+    padding:15px 40px;
+
+    border-radius:40px;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+.next:hover{
+
+    background:#003A70;
+
+    transform:scale(1.05);
+
+}
+
+.logo{
+
+    color:#888;
+
+    font-size:15px;
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>🏛️ STFX Trivia</h1>
+
+<div class="score">
+⭐ Score: 20
+</div>
+
+</div>
+
+<div class="progressText">
+
+Question 4 of 10
+
+</div>
+
+<div class="progressBar">
+
+<div class="progress"></div>
+
+</div>
+
+<div class="question">
+
+Which building houses the main dining hall at StFX?
+
+</div>
+
+<div class="answers">
+
+<button class="answer">
+🏛️ Morrison Hall
+</button>
+
+<button class="answer">
+📚 Angus L. Macdonald Library
+</button>
+
+<button class="answer">
+🏢 Mulroney Hall
+</button>
+
+<button class="answer">
+🏠 Bishop's Hall
+</button>
+
+</div>
+
+<div class="footer">
+
+<div class="logo">
+Powered by Sodexo & StFX
+</div>
+
+<button class="next">
+Next →
+</button>
+
+</div>
+
+</div>
+
+</body>
+</html>
