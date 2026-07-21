@@ -129,9 +129,8 @@ body::after{
     width:auto;
     max-width:300px;
     object-fit:contain;
-    image-rendering:auto;
-    display:block;
 }
+
 .sodexo-logo{
     height:65px !important;
 }
@@ -440,6 +439,23 @@ body::after{
         height:48px !important;
 
     }
+    .bottom-logos{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:25px;
+}
+
+.bottom-logos img{
+    height:40px;
+    width:auto;
+    max-width:180px;
+    object-fit:contain;
+}
+
+.bottom-logos .sodexo-bottom{
+    height:35px;
+}
 
 
     .question{
@@ -578,44 +594,30 @@ body::after{
 
     <!-- FOOTER -->
 
-    <div class="footer">
+ <div class="footer">
 
+    <div class="bottom-logos">
 
-        <div class="logo">
+        <img src="STFXlogo.png" alt="StFX Logo">
 
-            Powered by Sodexo & StFX
-
-        </div>
-
-
-
-        <div class="buttons">
-
-
-            <button class="next" id="back">
-
-                ← Back
-
-            </button>
-
-
-
-            <button class="next" id="next">
-
-                Next →
-
-            </button>
-
-
-        </div>
-
+        <img
+            src="logo.png"
+            alt="Sodexo Logo"
+            class="sodexo-bottom">
 
     </div>
 
+    <div class="buttons">
 
-</div>
+        <button class="next" id="back">
+            ← Back
+        </button>
 
+        <button class="next" id="next">
+            Next →
+        </button>
 
+    </div>
 
 </div>
 
