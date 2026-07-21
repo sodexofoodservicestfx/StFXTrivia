@@ -510,9 +510,9 @@ body::after{
 
     <div class="logos">
 
-        <img src="stfx-logo.png" alt="StFX Logo">
+        <img src="STFXlog.png" alt="StFX Logo">
 
-        <img src="sodexo-logo.png" alt="Sodexo Logo" class="sodexo-logo">
+        <img src="logo.png" alt="Sodexo Logo" class="sodexo-logo">
 
     </div>
 
@@ -793,13 +793,8 @@ function loadQuestion(){
     let q = questions[currentQuestion];
 
 
-    /* Question */
-
     document.getElementById("question").innerHTML = q.question;
 
-
-
-    /* Progress Text */
 
     document.getElementById("progressText").innerHTML =
 
@@ -812,16 +807,10 @@ function loadQuestion(){
         questions.length;
 
 
-
-    /* Progress Bar */
-
     document.getElementById("progress").style.width =
 
         ((currentQuestion + 1) / questions.length) * 100 + "%";
 
-
-
-    /* Answer Buttons */
 
     let html = "";
 
@@ -936,9 +925,6 @@ function selectAnswer(index){
 document.getElementById("next").onclick = function(){
 
 
-    /* Make sure an answer is selected */
-
-
     if(selectedAnswers[currentQuestion] === undefined){
 
 
@@ -952,9 +938,6 @@ document.getElementById("next").onclick = function(){
 
 
 
-    /* Move to next question */
-
-
     if(currentQuestion < questions.length - 1){
 
 
@@ -966,9 +949,6 @@ document.getElementById("next").onclick = function(){
 
     }
 
-
-
-    /* Finish Quiz */
 
 
     else{
@@ -1001,7 +981,7 @@ document.getElementById("next").onclick = function(){
                 <div class="logos">
 
 
-                    <img src="STFXlogo.png" alt="StFX Logo">
+                    <img src="STFXlog.png" alt="StFX Logo">
 
 
                     <img
