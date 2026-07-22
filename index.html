@@ -580,8 +580,6 @@ body::after{
 <div class="welcome" id="welcome">
 
 
-    <!-- TOP LOGOS -->
-
     <div class="logos">
 
         <img src="STFXlogo.png" alt="StFX Logo">
@@ -635,15 +633,11 @@ body::after{
 
 
 
-    <!-- PROGRESS TEXT -->
-
     <div class="progressText" id="progressText">
 
     </div>
 
 
-
-    <!-- PROGRESS BAR -->
 
     <div class="progressBar">
 
@@ -653,15 +647,11 @@ body::after{
 
 
 
-    <!-- QUESTION -->
-
     <div class="question" id="question">
 
     </div>
 
 
-
-    <!-- ANSWERS -->
 
     <div class="answers" id="answers">
 
@@ -669,12 +659,8 @@ body::after{
 
 
 
-    <!-- FOOTER -->
-
     <div class="footer">
 
-
-        <!-- BOTTOM LOGOS -->
 
         <div class="bottom-logos">
 
@@ -691,8 +677,6 @@ body::after{
         </div>
 
 
-
-        <!-- BUTTONS -->
 
         <div class="buttons">
 
@@ -807,93 +791,6 @@ const questions = [
 
 ];
 
-    {
-
-        question:"What does STFX stand for?",
-
-        answers:[
-
-            "Saint Francis Xavier University",
-
-            "St Thomas Francis Xavier College",
-
-            "Saint Frederick Xavier School",
-
-            "Southern Technical Faculty Xavier"
-
-        ],
-
-        correct:0
-
-    },
-
-
-    {
-
-        question:"Who provides food services at StFX?",
-
-        answers:[
-
-            "🍔 McDonald's",
-
-            "🍽️ Sodexo",
-
-            "☕ Starbucks",
-
-            "🥗 Aramark"
-
-        ],
-
-        correct:1
-
-    },
-
-
-    {
-
-        question:"What province is StFX located in?",
-
-        answers:[
-
-            "Ontario",
-
-            "Nova Scotia",
-
-            "Alberta",
-
-            "British Columbia"
-
-        ],
-
-        correct:1
-
-    },
-
-
-    {
-
-        question:"What are the official StFX school colours?",
-
-        answers:[
-
-            "🔵 Blue and White",
-
-            "🔴 Red and Black",
-
-            "🟢 Green and Gold",
-
-            "🟣 Purple and Silver"
-
-        ],
-
-        correct:0
-
-    }
-
-
-];
-
-
 
 /* ========================= */
 /* VARIABLES */
@@ -915,7 +812,6 @@ function resetInactivityTimer(){
 
     clearTimeout(inactivityTimer);
 
-
     inactivityTimer = setTimeout(function(){
 
         returnToHome();
@@ -933,11 +829,9 @@ function returnToHome(){
 
     clearTimeout(inactivityTimer);
 
-
     currentQuestion = 0;
 
     selectedAnswers = [];
-
 
     document.getElementById("quiz").style.display = "none";
 
@@ -973,12 +867,9 @@ function startTrivia(){
 
 function loadQuestion(){
 
-
     let q = questions[currentQuestion];
 
-
     document.getElementById("question").innerHTML = q.question;
-
 
     document.getElementById("progressText").innerHTML =
 
@@ -990,7 +881,6 @@ function loadQuestion(){
 
         questions.length;
 
-
     document.getElementById("progress").style.width =
 
         ((currentQuestion + 1) / questions.length) * 100 + "%";
@@ -1000,7 +890,6 @@ function loadQuestion(){
 
 
     q.answers.forEach((answer,index)=>{
-
 
         html += `
 
@@ -1016,18 +905,15 @@ function loadQuestion(){
 
         `;
 
-
     });
 
 
     document.getElementById("answers").innerHTML = html;
 
 
-
     /* Restore Previous Answer */
 
     if(selectedAnswers[currentQuestion] !== undefined){
-
 
         document
 
@@ -1039,13 +925,10 @@ function loadQuestion(){
 
         .add("selected");
 
-
     }
 
 
-
     /* Show / Hide Back Button */
-
 
     if(currentQuestion === 0){
 
@@ -1059,7 +942,6 @@ function loadQuestion(){
 
     }
 
-
 }
 
 
@@ -1068,7 +950,6 @@ function loadQuestion(){
 /* ========================= */
 
 function selectAnswer(index){
-
 
     selectedAnswers[currentQuestion] = index;
 
@@ -1095,10 +976,7 @@ function selectAnswer(index){
     .add("selected");
 
 
-    /* Reset 45 second timer */
-
     resetInactivityTimer();
-
 
 }
 
@@ -1109,42 +987,28 @@ function selectAnswer(index){
 
 document.getElementById("next").onclick = function(){
 
-
-    /* Reset 45 second timer */
-
     resetInactivityTimer();
 
 
     if(selectedAnswers[currentQuestion] === undefined){
 
-
         alert("Please select an answer!");
-
 
         return;
 
-
     }
-
 
 
     if(currentQuestion < questions.length - 1){
 
-
         currentQuestion++;
 
-
         loadQuestion();
-
 
     }
 
 
-
     else{
-
-
-        /* Stop timer */
 
         clearTimeout(inactivityTimer);
 
@@ -1152,9 +1016,7 @@ document.getElementById("next").onclick = function(){
         let score = 0;
 
 
-
         questions.forEach((q,index)=>{
-
 
             if(selectedAnswers[index] === q.correct){
 
@@ -1162,22 +1024,16 @@ document.getElementById("next").onclick = function(){
 
             }
 
-
         });
-
 
 
         document.querySelector(".container").innerHTML = `
 
-
             <div class="welcome">
-
 
                 <div class="logos">
 
-
                     <img src="STFXlogo.png" alt="StFX Logo">
-
 
                     <img
 
@@ -1187,9 +1043,7 @@ document.getElementById("next").onclick = function(){
 
                         class="sodexo-logo">
 
-
                 </div>
-
 
 
                 <h1>
@@ -1199,13 +1053,11 @@ document.getElementById("next").onclick = function(){
                 </h1>
 
 
-
                 <p>
 
                     Your Score: ${score}/${questions.length}
 
                 </p>
-
 
 
                 <button
@@ -1214,26 +1066,17 @@ document.getElementById("next").onclick = function(){
 
                     onclick="location.reload()">
 
-
                     Play Again →
-
 
                 </button>
 
-
             </div>
-
 
         `;
 
-
     }
 
-
 };
-
-
-
 
 
 /* ========================= */
@@ -1242,23 +1085,16 @@ document.getElementById("next").onclick = function(){
 
 document.getElementById("back").onclick = function(){
 
-
-    /* Reset 45 second timer */
-
     resetInactivityTimer();
 
 
     if(currentQuestion > 0){
 
-
         currentQuestion--;
-
 
         loadQuestion();
 
-
     }
-
 
 };
 
