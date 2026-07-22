@@ -855,12 +855,51 @@ let currentQuestion = 0;
 
 let selectedAnswers = [];
 
+let inactivityTimer;
+
+
+/* ========================= */
+/* RESET 45 SECOND TIMER */
+/* ========================= */
+
+function resetInactivityTimer(){
+
+    clearTimeout(inactivityTimer);
+
+
+    inactivityTimer = setTimeout(function(){
+
+        returnToHome();
+
+    }, 45000);
+
+}
+
+
+/* ========================= */
+/* RETURN TO HOME SCREEN */
+/* ========================= */
+
+function returnToHome(){
+
+    clearTimeout(inactivityTimer);
+
+
+    currentQuestion = 0;
+
+    selectedAnswers = [];
+
+
+    document.getElementById("quiz").style.display = "none";
+
+    document.getElementById("welcome").style.display = "block";
+
+}
 
 
 /* ========================= */
 /* START TRIVIA */
 /* ========================= */
-
 
 function startTrivia(){
 
@@ -868,16 +907,20 @@ function startTrivia(){
 
     document.getElementById("quiz").style.display = "block";
 
+    currentQuestion = 0;
+
+    selectedAnswers = [];
+
     loadQuestion();
 
-}
+    resetInactivityTimer();
 
+}
 
 
 /* ========================= */
 /* LOAD QUESTION */
 /* ========================= */
-
 
 function loadQuestion(){
 
@@ -971,11 +1014,9 @@ function loadQuestion(){
 }
 
 
-
 /* ========================= */
 /* SELECT ANSWER */
 /* ========================= */
-
 
 function selectAnswer(index){
 
@@ -1005,16 +1046,24 @@ function selectAnswer(index){
     .add("selected");
 
 
-}
+    /* Reset 45 second timer */
 
+    resetInactivityTimer();
+
+
+}
 
 
 /* ========================= */
 /* NEXT BUTTON */
 /* ========================= */
 
-
 document.getElementById("next").onclick = function(){
+
+
+    /* Reset 45 second timer */
+
+    resetInactivityTimer();
 
 
     if(selectedAnswers[currentQuestion] === undefined){
@@ -1044,6 +1093,11 @@ document.getElementById("next").onclick = function(){
 
 
     else{
+
+
+        /* Stop timer */
+
+        clearTimeout(inactivityTimer);
 
 
         let score = 0;
@@ -1137,8 +1191,12 @@ document.getElementById("next").onclick = function(){
 /* BACK BUTTON */
 /* ========================= */
 
-
 document.getElementById("back").onclick = function(){
+
+
+    /* Reset 45 second timer */
+
+    resetInactivityTimer();
 
 
     if(currentQuestion > 0){
