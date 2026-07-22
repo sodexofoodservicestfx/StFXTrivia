@@ -545,7 +545,7 @@ body::after{
 
 #back{
 
-    display:none;
+    display:block;
 
 }
 
@@ -1117,10 +1117,10 @@ worldcup:{
             question:"Which Country is NOT a Host Country for the 2030 WOrld Cup ?",
 
             answers:[
-                "Spain ",
-                "Uruguay"
+                "Spain",
+                "Uruguay",
                 "France",
-                "Morroco"
+                "Morocco"
             ],
 
             correct:2
@@ -1776,7 +1776,7 @@ food:{
 
 
         {
-            {
+            
     question: "Which food is known for never spoiling?",
 
     answers: [
@@ -2098,21 +2098,10 @@ function loadQuestion(){
 
     /* Back button */
 
-    if(currentQuestion === 0){
-
-        document.getElementById("back").style.display = "none";
-
-    }
-
-    else{
-
-        document.getElementById("back").style.display = "block";
-
-    }
+   
+document.getElementById("back").style.display = "block";
 
 }
-
-
 
 /* ================================================= */
 /* SELECT ANSWER */
@@ -2387,19 +2376,37 @@ function finishQuiz(){
 /* BACK BUTTON */
 /* ================================================= */
 
-
 document.getElementById("back").addEventListener("click",function(){
+
+    /* Reset inactivity timer */
 
     resetInactivityTimer();
 
 
-    if(currentQuestion > 0){
+    /* If on the first question, return to category selection */
 
-        currentQuestion--;
+    if(currentQuestion === 0){
 
-        loadQuestion();
+        document.getElementById("quiz").style.display = "none";
+
+        document.getElementById("categoryScreen").style.display = "block";
+
+        currentCategory = "";
+
+        currentQuestion = 0;
+
+        selectedAnswers = [];
+
+        return;
 
     }
+
+
+    /* Otherwise go back to previous question */
+
+    currentQuestion--;
+
+    loadQuestion();
 
 });
 
