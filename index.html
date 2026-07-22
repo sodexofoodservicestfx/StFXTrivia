@@ -13,6 +13,10 @@
 
 <style>
 
+/* ========================= */
+/* GENERAL */
+/* ========================= */
+
 *{
     margin:0;
     padding:0;
@@ -20,6 +24,10 @@
     font-family:'Poppins',sans-serif;
 }
 
+
+/* ========================= */
+/* BODY */
+/* ========================= */
 
 body{
 
@@ -31,17 +39,23 @@ body{
     url("stfxcampus.jpg");
 
     background-size:cover;
+
     background-position:center;
 
     width:100%;
+
     height:100vh;
 
     position:relative;
+
     overflow:hidden;
+
 }
 
 
-/* Background Decorative Circles */
+/* ========================= */
+/* BACKGROUND DECORATIVE CIRCLES */
+/* ========================= */
 
 body::before,
 body::after{
@@ -83,11 +97,14 @@ body::after{
 }
 
 
-
-/* Main Box */
+/* ========================= */
+/* MAIN BOX */
+/* ========================= */
 
 .container{
+
     width:90%;
+
     max-width:800px;
 
     background:white;
@@ -101,38 +118,97 @@ body::after{
     position:absolute;
 
     top:50%;
+
     left:50%;
 
     transform:translate(-50%, -50%);
 
     z-index:1;
-}
 
 }
-
 
 
 /* ========================= */
-/* LOGOS */
+/* TOP LOGOS */
 /* ========================= */
 
 .logos{
+
     display:flex;
+
     justify-content:center;
+
     align-items:center;
+
     gap:35px;
+
     margin-bottom:25px;
+
 }
+
 
 .logos img{
+
     height:75px;
+
     width:auto;
+
     max-width:300px;
+
     object-fit:contain;
+
 }
 
+
 .sodexo-logo{
+
     height:65px !important;
+
+}
+
+
+/* ========================= */
+/* BOTTOM LOGOS */
+/* ========================= */
+
+.bottom-logos{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:20px;
+
+    width:200px;
+
+    height:50px;
+
+}
+
+
+.bottom-logos img{
+
+    height:40px !important;
+
+    width:auto !important;
+
+    max-width:100px !important;
+
+    object-fit:contain;
+
+}
+
+
+.bottom-logos img.sodexo-bottom{
+
+    height:32px !important;
+
+    width:auto !important;
+
+    max-width:100px !important;
+
 }
 
 
@@ -171,7 +247,6 @@ body::after{
 }
 
 
-
 /* ========================= */
 /* HEADER */
 /* ========================= */
@@ -196,7 +271,6 @@ body::after{
     font-size:34px;
 
 }
-
 
 
 /* ========================= */
@@ -242,7 +316,6 @@ body::after{
 }
 
 
-
 /* ========================= */
 /* QUESTION */
 /* ========================= */
@@ -258,7 +331,6 @@ body::after{
     margin-bottom:30px;
 
 }
-
 
 
 /* ========================= */
@@ -315,7 +387,6 @@ body::after{
     background:#EEF5FF;
 
 }
-
 
 
 /* ========================= */
@@ -376,16 +447,6 @@ body::after{
 }
 
 
-.logo{
-
-    color:#888;
-
-    font-size:15px;
-
-}
-
-
-
 /* ========================= */
 /* MOBILE */
 /* ========================= */
@@ -393,6 +454,8 @@ body::after{
 @media(max-width:600px){
 
     .container{
+
+        width:90%;
 
         padding:20px;
 
@@ -439,23 +502,6 @@ body::after{
         height:48px !important;
 
     }
-    .bottom-logos{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:25px;
-}
-
-.bottom-logos img{
-    height:40px;
-    width:auto;
-    max-width:180px;
-    object-fit:contain;
-}
-
-.bottom-logos .sodexo-bottom{
-    height:35px;
-}
 
 
     .question{
@@ -489,6 +535,31 @@ body::after{
 
     }
 
+
+    .bottom-logos{
+
+        width:200px;
+
+        height:45px;
+
+    }
+
+
+    .bottom-logos img{
+
+        height:35px !important;
+
+        max-width:90px !important;
+
+    }
+
+
+    .bottom-logos img.sodexo-bottom{
+
+        height:28px !important;
+
+    }
+
 }
 
 </style>
@@ -509,7 +580,7 @@ body::after{
 <div class="welcome" id="welcome">
 
 
-    <!-- LOGOS -->
+    <!-- TOP LOGOS -->
 
     <div class="logos">
 
@@ -521,12 +592,16 @@ body::after{
 
 
     <h1>
+
         🏛️ Welcome to STFX Trivia
+
     </h1>
 
 
     <p>
+
         Test your knowledge of StFX, Sodexo, campus life, and more!
+
     </p>
 
 
@@ -551,7 +626,9 @@ body::after{
     <div class="header">
 
         <h1>
+
             🏛️ STFX Trivia
+
         </h1>
 
     </div>
@@ -594,30 +671,56 @@ body::after{
 
     <!-- FOOTER -->
 
- <div class="footer">
+    <div class="footer">
 
-    <div class="bottom-logos">
 
-        <img src="STFXlogo.png" alt="StFX Logo">
+        <!-- BOTTOM LOGOS -->
 
-        <img
-            src="logo.png"
-            alt="Sodexo Logo"
-            class="sodexo-bottom">
+        <div class="bottom-logos">
+
+            <img src="STFXlogo.png" alt="StFX Logo">
+
+            <img
+
+                src="logo.png"
+
+                alt="Sodexo Logo"
+
+                class="sodexo-bottom">
+
+        </div>
+
+
+
+        <!-- BUTTONS -->
+
+        <div class="buttons">
+
+
+            <button class="next" id="back">
+
+                ← Back
+
+            </button>
+
+
+
+            <button class="next" id="next">
+
+                Next →
+
+            </button>
+
+
+        </div>
+
 
     </div>
 
-    <div class="buttons">
 
-        <button class="next" id="back">
-            ← Back
-        </button>
+</div>
 
-        <button class="next" id="next">
-            Next →
-        </button>
 
-    </div>
 
 </div>
 
@@ -970,7 +1073,7 @@ document.getElementById("next").onclick = function(){
                 <div class="logos">
 
 
-                    <img src="STFXlog.png" alt="StFX Logo">
+                    <img src="STFXlogo.png" alt="StFX Logo">
 
 
                     <img
