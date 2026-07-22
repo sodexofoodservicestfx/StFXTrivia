@@ -445,7 +445,123 @@ body::after{
     transform:scale(1.05);
 
 }
+/* ========================= */
+/* RESULTS SCREEN */
+/* ========================= */
 
+.results-screen{
+
+    text-align:center;
+
+}
+
+
+.results-screen .logos{
+
+    margin-bottom:15px;
+
+}
+
+
+.results-screen h1{
+
+    color:#003A70;
+
+    font-size:32px;
+
+    margin-bottom:8px;
+
+}
+
+
+.score{
+
+    font-size:24px;
+
+    font-weight:600;
+
+    color:#0057B8;
+
+    margin-bottom:18px;
+
+}
+
+
+.results-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+    margin-bottom:20px;
+
+    text-align:left;
+
+}
+
+
+.result-item{
+
+    padding:9px 14px;
+
+    border-radius:10px;
+
+    border-left:5px solid;
+
+}
+
+
+.correct-result{
+
+    background:#EAF7EA;
+
+    border-left-color:#4CAF50;
+
+}
+
+
+.incorrect-result{
+
+    background:#FFF0F0;
+
+    border-left-color:#E53935;
+
+}
+
+
+.result-question{
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:#222;
+
+    margin-bottom:3px;
+
+}
+
+
+.result-answer{
+
+    font-size:13px;
+
+    color:#555;
+
+}
+
+
+.correct-answer{
+
+    font-size:13px;
+
+    color:#2E7D32;
+
+    margin-top:2px;
+
+}
 
 /* ========================= */
 /* MOBILE */
@@ -1008,75 +1124,135 @@ document.getElementById("next").onclick = function(){
     }
 
 
-    else{
+ else{
 
-        clearTimeout(inactivityTimer);
+    clearTimeout(inactivityTimer);
 
+    let score = 0;
 
-        let score = 0;
-
-
-        questions.forEach((q,index)=>{
-
-            if(selectedAnswers[index] === q.correct){
-
-                score++;
-
-            }
-
-        });
+    let resultsHTML = "";
 
 
-        document.querySelector(".container").innerHTML = `
+    /* Calculate Score */
 
-            <div class="welcome">
+    questions.forEach((q,index)=>{
 
-                <div class="logos">
+        if(selectedAnswers[index] === q.correct){
 
-                    <img src="STFXlogo.png" alt="StFX Logo">
+            score++;
 
-                    <img
+        }
 
-                        src="logo.png"
+    });
 
-                        alt="Sodexo Logo"
 
-                        class="sodexo-logo">
+    /* Create Answer Review */
+
+    questions.forEach((q,index)=>{
+
+        let userAnswer = q.answers[selectedAnswers[index]];
+
+        let correctAnswer = q.answers[q.correct];
+
+        let isCorrect = selectedAnswers[index] === q.correct;
+
+
+        resultsHTML += `
+
+            <div class="result-item ${isCorrect ? 'correct-result' : 'incorrect-result'}">
+
+                <div class="result-question">
+
+                    ${isCorrect ? "✅" : "❌"}
+
+                    ${q.question}
 
                 </div>
 
 
-                <h1>
+                <div class="result-answer">
 
-                    🎉 Trivia Complete!
+                    <strong>Your answer:</strong>
 
-                </h1>
+                    ${userAnswer}
 
-
-                <p>
-
-                    Your Score: ${score}/${questions.length}
-
-                </p>
+                </div>
 
 
-                <button
+                ${!isCorrect ? `
 
-                    class="next"
+                    <div class="correct-answer">
 
-                    onclick="location.reload()">
+                        <strong>Correct answer:</strong>
 
-                    Play Again →
+                        ${correctAnswer}
 
-                </button>
+                    </div>
+
+                ` : ""}
 
             </div>
 
         `;
 
-    }
+    });
 
-};
+
+    document.querySelector(".container").innerHTML = `
+
+        <div class="results-screen">
+
+            <div class="logos">
+
+                <img src="STFXlogo.png" alt="StFX Logo">
+
+                <img
+
+                    src="logo.png"
+
+                    alt="Sodexo Logo"
+
+                    class="sodexo-logo">
+
+            </div>
+
+
+            <h1>
+
+                🎉 Trivia Complete!
+
+            </h1>
+
+
+            <div class="score">
+
+                Your Score: ${score}/${questions.length}
+
+            </div>
+
+
+            <div class="results-list">
+
+                ${resultsHTML}
+
+            </div>
+
+
+            <button
+
+                class="next"
+
+                onclick="location.reload()">
+
+                Play Again →
+
+            </button>
+
+        </div>
+
+    `;
+
+}
 
 
 /* ========================= */
