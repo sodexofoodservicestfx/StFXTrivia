@@ -1895,9 +1895,51 @@ let currentQuestion = 0;
 let selectedAnswers = [];
 
 let inactivityTimer = null;
+let categoryTimer = null;
 
+/* ================================================= */
+/* CATEGORY SCREEN TIMER */
+/* ================================================= */
 
+function resetCategoryTimer(){
 
+    clearTimeout(categoryTimer);
+
+    categoryTimer = setTimeout(function(){
+
+        returnToWelcome();
+
+    },60000);
+
+}
+    
+/* ================================================= */
+/* RETURN TO WELCOME SCREEN */
+/* ================================================= */
+
+function returnToWelcome(){
+
+    clearTimeout(categoryTimer);
+
+    categoryTimer = null;
+
+    clearTimeout(inactivityTimer);
+
+    inactivityTimer = null;
+
+    currentCategory = "";
+
+    currentQuestion = 0;
+
+    selectedAnswers = [];
+
+    document.getElementById("quiz").style.display = "none";
+
+    document.getElementById("categoryScreen").style.display = "none";
+
+    document.getElementById("welcome").style.display = "block";
+
+}
 /* ================================================= */
 /* START BUTTON */
 /* ================================================= */
@@ -1908,6 +1950,8 @@ document.getElementById("startButton").addEventListener("click",function(){
     document.getElementById("welcome").style.display = "none";
 
     document.getElementById("categoryScreen").style.display = "block";
+
+    resetCategoryTimer();
 
 });
 
@@ -1938,6 +1982,10 @@ document.querySelectorAll(".category-button").forEach(function(button){
 
 
 function startTrivia(category){
+
+    clearTimeout(categoryTimer);
+
+    categoryTimer = null;
 
     currentCategory = category;
 
@@ -1996,20 +2044,24 @@ function returnToHome(){
 
     inactivityTimer = null;
 
-
     currentCategory = "";
 
     currentQuestion = 0;
 
     selectedAnswers = [];
 
-
     document.getElementById("quiz").style.display = "none";
 
     document.getElementById("categoryScreen").style.display = "block";
 
-}
 
+
+    /* Start 60-second category screen timer */
+
+    resetCategoryTimer();
+
+
+}
 
 
 /* ================================================= */
@@ -2385,21 +2437,27 @@ document.getElementById("back").addEventListener("click",function(){
 
     /* If on the first question, return to category selection */
 
-    if(currentQuestion === 0){
+   if(currentQuestion === 0){
 
-        document.getElementById("quiz").style.display = "none";
+    clearTimeout(inactivityTimer);
 
-        document.getElementById("categoryScreen").style.display = "block";
+    inactivityTimer = null;
 
-        currentCategory = "";
+    document.getElementById("quiz").style.display = "none";
 
-        currentQuestion = 0;
+    document.getElementById("categoryScreen").style.display = "block";
 
-        selectedAnswers = [];
+    currentCategory = "";
 
-        return;
+    currentQuestion = 0;
 
-    }
+    selectedAnswers = [];
+
+    resetCategoryTimer();
+
+    return;
+
+}
 
 
     /* Otherwise go back to previous question */
