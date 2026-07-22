@@ -828,81 +828,79 @@ body::after{
 
 <script>
 
-
 /* ========================= */
 /* QUESTIONS */
 /* ========================= */
 
-
 const questions = [
 
     {
-        question:"What is the main dining hall at StFX called?",
+        question: "What is the main dining hall at StFX called?",
 
-        answers:[
+        answers: [
             "Morrison Hall",
             "Angus L. Macdonald Library",
             "Mulroney Hall",
             "Bishop's Hall"
         ],
 
-        correct:0
+        correct: 0
     },
 
 
     {
-        question:"What year was StFX founded?",
+        question: "What year was StFX founded?",
 
-        answers:[
+        answers: [
             "1848",
             "1853",
             "1867",
             "1875"
         ],
 
-        correct:1
+        correct: 1
     },
 
 
     {
-        question:"What is the famous ring associated with StFX?",
+        question: "What is the famous ring associated with StFX?",
 
-        answers:[
+        answers: [
             "The O-Ring",
             "The Blue Ring",
             "The X-Ring",
             "The Xavier Ring"
         ],
 
-        correct:2
+        correct: 2
     },
 
 
     {
-        question:'Who is famous for saying the iconic "Go X Go!" chant?',
+        question: 'Who is famous for saying the iconic "Go X Go!" chant?',
 
-        answers:[
+        answers: [
             "Father Stan",
             "Dr. Andy Hakin",
             "Brian Mulroney",
             "Mark Carney"
         ],
 
-        correct:0
+        correct: 0
     },
 
 
     {
-        question:"Which of the following is NOT currently a residence at StFX?",
+        question: "Which of the following is NOT currently a residence at StFX?",
 
-        answers:[
+        answers: [
             "FX Hall",
             "Cameron Hall",
             "Mount Saint Bernard",
             "Coady Hall"
         ],
 
-        correct:3
+        correct: 3
     }
 
 ];
@@ -911,7 +909,6 @@ const questions = [
 /* ========================= */
 /* VARIABLES */
 /* ========================= */
-
 
 let currentQuestion = 0;
 
@@ -924,11 +921,11 @@ let inactivityTimer;
 /* RESET 45 SECOND TIMER */
 /* ========================= */
 
-function resetInactivityTimer(){
+function resetInactivityTimer() {
 
     clearTimeout(inactivityTimer);
 
-    inactivityTimer = setTimeout(function(){
+    inactivityTimer = setTimeout(function() {
 
         returnToHome();
 
@@ -938,10 +935,10 @@ function resetInactivityTimer(){
 
 
 /* ========================= */
-/* RETURN TO HOME SCREEN */
+/* RETURN TO HOME */
 /* ========================= */
 
-function returnToHome(){
+function returnToHome() {
 
     clearTimeout(inactivityTimer);
 
@@ -960,7 +957,7 @@ function returnToHome(){
 /* START TRIVIA */
 /* ========================= */
 
-function startTrivia(){
+function startTrivia() {
 
     document.getElementById("welcome").style.display = "none";
 
@@ -981,13 +978,19 @@ function startTrivia(){
 /* LOAD QUESTION */
 /* ========================= */
 
-function loadQuestion(){
+function loadQuestion() {
 
-    let q = questions[currentQuestion];
+    const q = questions[currentQuestion];
 
-    document.getElementById("question").innerHTML = q.question;
 
-    document.getElementById("progressText").innerHTML =
+    /* Question */
+
+    document.getElementById("question").textContent = q.question;
+
+
+    /* Progress Text */
+
+    document.getElementById("progressText").textContent =
 
         "Question " +
 
@@ -997,64 +1000,67 @@ function loadQuestion(){
 
         questions.length;
 
+
+    /* Progress Bar */
+
     document.getElementById("progress").style.width =
 
         ((currentQuestion + 1) / questions.length) * 100 + "%";
 
 
-    let html = "";
+    /* Create Answers */
+
+    const answersContainer = document.getElementById("answers");
+
+    answersContainer.innerHTML = "";
 
 
-    q.answers.forEach((answer,index)=>{
+    q.answers.forEach(function(answer, index) {
 
-        html += `
+        const button = document.createElement("button");
 
-            <button
+        button.className = "answer";
 
-                class="answer"
+        button.textContent = answer;
 
-                onclick="selectAnswer(${index})">
 
-                ${answer}
+        button.onclick = function() {
 
-            </button>
+            selectAnswer(index);
 
-        `;
+        };
+
+
+        answersContainer.appendChild(button);
 
     });
 
 
-    document.getElementById("answers").innerHTML = html;
+    /* Restore Selected Answer */
 
+    if (selectedAnswers[currentQuestion] !== undefined) {
 
-    /* Restore Previous Answer */
+        const buttons = document.querySelectorAll(".answer");
 
-    if(selectedAnswers[currentQuestion] !== undefined){
+        buttons[selectedAnswers[currentQuestion]]
 
-        document
-
-        .querySelectorAll(".answer")
-
-        [selectedAnswers[currentQuestion]]
-
-        .classList
-
-        .add("selected");
+            .classList.add("selected");
 
     }
 
 
-    /* Show / Hide Back Button */
+    /* Back Button */
 
-    if(currentQuestion === 0){
+    const backButton = document.getElementById("back");
 
-        document.getElementById("back").style.display = "none";
 
-    }
+    if (currentQuestion === 0) {
 
-    else{
+        backButton.style.display = "none";
 
-        document.getElementById("back").style.display = "block";
+    } else {
+
+        backButton.style.display = "block";
 
     }
 
@@ -1065,31 +1071,22 @@ function loadQuestion(){
 /* SELECT ANSWER */
 /* ========================= */
 
-function selectAnswer(index){
+function selectAnswer(index) {
 
     selectedAnswers[currentQuestion] = index;
 
 
-    document
+    const buttons = document.querySelectorAll(".answer");
 
-    .querySelectorAll(".answer")
 
-    .forEach(btn=>{
+    buttons.forEach(function(button) {
 
-        btn.classList.remove("selected");
+        button.classList.remove("selected");
 
     });
 
 
-    document
-
-    .querySelectorAll(".answer")
-
-    [index]
-
-    .classList
-
-    .add("selected");
+    buttons[index].classList.add("selected");
 
 
     resetInactivityTimer();
@@ -1101,12 +1098,14 @@ function selectAnswer(index){
 /* NEXT BUTTON */
 /* ========================= */
 
-document.getElementById("next").onclick = function(){
+document.getElementById("next").onclick = function() {
 
     resetInactivityTimer();
 
 
-    if(selectedAnswers[currentQuestion] === undefined){
+    /* Make sure an answer is selected */
+
+    if (selectedAnswers[currentQuestion] === undefined) {
 
         alert("Please select an answer!");
 
@@ -1115,29 +1114,34 @@ document.getElementById("next").onclick = function(){
     }
 
 
-    if(currentQuestion < questions.length - 1){
+    /* Go to next question */
+
+    if (currentQuestion < questions.length - 1) {
 
         currentQuestion++;
 
         loadQuestion();
 
+        return;
+
     }
 
 
- else{
+    /* ========================= */
+    /* FINISH QUIZ */
+    /* ========================= */
 
     clearTimeout(inactivityTimer);
 
-    let score = 0;
 
-    let resultsHTML = "";
+    let score = 0;
 
 
     /* Calculate Score */
 
-    questions.forEach((q,index)=>{
+    questions.forEach(function(q, index) {
 
-        if(selectedAnswers[index] === q.correct){
+        if (selectedAnswers[index] === q.correct) {
 
             score++;
 
@@ -1146,20 +1150,34 @@ document.getElementById("next").onclick = function(){
     });
 
 
-    /* Create Answer Review */
+    /* Create Results */
 
-    questions.forEach((q,index)=>{
+    let resultsHTML = "";
 
-        let userAnswer = q.answers[selectedAnswers[index]];
 
-        let correctAnswer = q.answers[q.correct];
+    questions.forEach(function(q, index) {
 
-        let isCorrect = selectedAnswers[index] === q.correct;
+        const userAnswer = q.answers[selectedAnswers[index]];
+
+        const correctAnswer = q.answers[q.correct];
+
+        const isCorrect =
+
+            selectedAnswers[index] === q.correct;
 
 
         resultsHTML += `
 
-            <div class="result-item ${isCorrect ? 'correct-result' : 'incorrect-result'}">
+            <div class="result-item ${
+
+                isCorrect
+
+                    ? "correct-result"
+
+                    : "incorrect-result"
+
+            }">
+
 
                 <div class="result-question">
 
@@ -1179,17 +1197,26 @@ document.getElementById("next").onclick = function(){
                 </div>
 
 
-                ${!isCorrect ? `
+                ${
 
-                    <div class="correct-answer">
+                    !isCorrect
 
-                        <strong>Correct answer:</strong>
+                        ? `
 
-                        ${correctAnswer}
+                        <div class="correct-answer">
 
-                    </div>
+                            <strong>Correct answer:</strong>
 
-                ` : ""}
+                            ${correctAnswer}
+
+                        </div>
+
+                        `
+
+                        : ""
+
+                }
+
 
             </div>
 
@@ -1198,13 +1225,24 @@ document.getElementById("next").onclick = function(){
     });
 
 
+    /* ========================= */
+    /* SHOW RESULTS */
+    /* ========================= */
+
     document.querySelector(".container").innerHTML = `
 
         <div class="results-screen">
 
+
             <div class="logos">
 
-                <img src="STFXlogo.png" alt="StFX Logo">
+
+                <img
+
+                    src="STFXlogo.png"
+
+                    alt="StFX Logo">
+
 
                 <img
 
@@ -1213,6 +1251,7 @@ document.getElementById("next").onclick = function(){
                     alt="Sodexo Logo"
 
                     class="sodexo-logo">
+
 
             </div>
 
@@ -1226,7 +1265,9 @@ document.getElementById("next").onclick = function(){
 
             <div class="score">
 
-                Your Score: ${score}/${questions.length}
+                Your Score:
+
+                ${score}/${questions.length}
 
             </div>
 
@@ -1244,28 +1285,30 @@ document.getElementById("next").onclick = function(){
 
                 onclick="location.reload()">
 
+
                 Play Again →
 
+
             </button>
+
 
         </div>
 
     `;
 
-}
-    
 };
+
 
 /* ========================= */
 /* BACK BUTTON */
 /* ========================= */
 
-document.getElementById("back").onclick = function(){
+document.getElementById("back").onclick = function() {
 
     resetInactivityTimer();
 
 
-    if(currentQuestion > 0){
+    if (currentQuestion > 0) {
 
         currentQuestion--;
 
@@ -1274,6 +1317,17 @@ document.getElementById("back").onclick = function(){
     }
 
 };
+
+
+/* ========================= */
+/* INITIALIZE */
+/* ========================= */
+
+/* Make sure the welcome screen is shown */
+
+document.getElementById("welcome").style.display = "block";
+
+document.getElementById("quiz").style.display = "none";
 
 
 </script>
